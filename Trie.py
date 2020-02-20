@@ -26,7 +26,7 @@ class TrieNode(object):
         for char in word:
             child_found=False
             for child in node.children:
-                if char == child.char
+                if char == child.char:
                     node=child
                     child_found = True
                     break
