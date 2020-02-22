@@ -1,35 +1,48 @@
-class TrieNode(object):
-    def __init__(self,char):
-        self.char = char
-        self.children = []
-        self.links = []
+from collections import defaultdict
+
+
+class TrieNode:
+
+    def __init__(self):
+        self.children = defaultdict()
+        self.endOfWord = (False, 0)
+        self.links = {}  # recnik
+
+
+class Trie:
+
+    def __init__(self):
+        self.root = self.getNode()
+
+    def getNode(self):
+        return TrieNode()
+
+    def charToIndex(self, char):
+        return ord(char) - ord('a')  # ord() funkcija vraca unicode vrednost datog karaktera - integer (ASCII tabela)
 
     def dodavanjeReci(self, word, link):
-        word = word.upper()
-        node=self
-        for char in word:
-            child_found = False
-            for child in node.children:
-                if child.char==char:
-                    node=child
-                    child_found = True
-                    break
-            if not child_found:
-                new_node = TrieNode(char)
-                node.children.append(new_node)
-                node = new_node
-                node.links.append(link)
+        word = word.lower()
+        node = self.root
+        for i in range(len(word)):
+            index = self.charToIndex(word[i])
+
+            if index not in node.children:
+                node = node.children[index] = self.getNode()
+        n = node.endOfWord[1] + 1
+        node.endOfWord = (True, n)
+
+        if link not in node.links:
+            node.links[link] = 1
+        else:
+            node.links[link] += 1
 
     def pretragaReci(self, word):
-        word=word.upper()
-        node=self
-        for char in word:
-            child_found=False
-            for child in node.children:
-                if char == child.char:
-                    node=child
-                    child_found = True
-                    break
-                if not child_found:
-                    return None
-            return  node
+        word = word.lower()
+        node = self.root
+        for i in range(len(word)):
+            index = self.charToIndex(word[i])
+
+            if index not in node.children:
+                return node.endOfWord, node.links, node
+            node = node.children[index]
+        return node.endOfWord, node.links, node
