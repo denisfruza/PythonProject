@@ -1,6 +1,7 @@
 from Trie import *
 from parser2 import *
 from graph import *
+from ParsiranjeUpita import ParsirajUpit
 import os
 import time
 if __name__ == "__main__":
@@ -31,7 +32,7 @@ if __name__ == "__main__":
                 lista_izlaznih_linkova.append(izlazni_linkovi)
                 print("Parsiram:  " + "%s\\%s"%(dirpath,f))
                 for word in parser1.words:
-                    root.dodavanjeReci(word, f)
+                    root.dodavanjeReci(word, dirpath + '\\' +f)
 
     for i in range(0,len(stranica)):
         graph[stranica[i]] = Linkovi()
@@ -53,3 +54,5 @@ if __name__ == "__main__":
     end = time.time()
     print("Vreme parsiranja: ")
     print(end-start)
+    s = ParsirajUpit(root)
+    s.ispis()

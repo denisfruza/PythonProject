@@ -1,5 +1,5 @@
 from collections import defaultdict
-
+from  set import Set
 
 class TrieNode:
 
@@ -8,6 +8,11 @@ class TrieNode:
         self.endOfWord = (False, 0)
         self.links = {}  # recnik
 
+    def intoSet(self):
+        s = Set()
+        for item in self.links:
+            s.dodaj(item)
+        return s
 
 class Trie:
 

@@ -35,9 +35,6 @@ def ParsirajUpit(root):
                 i += 1
     s = Set()
     i = 0
-    print(logickiOperatori[0])
-    print(logickiOperatori[1])
-    print(logickiOperatori[2])
     while i<len(rezultat):
         if rezultat[i] == logickiOperatori[0]:
             s = s.presek(rezultat[i+1])
@@ -50,5 +47,5 @@ def ParsirajUpit(root):
             i = i+2
         else:
             s = s.unija(rezultat[i])
-            i+=1
+            i += 1
         return s
