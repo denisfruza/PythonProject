@@ -27,7 +27,8 @@ class Trie:
             index = self.charToIndex(word[i])
 
             if index not in node.children:
-                node = node.children[index] = self.getNode()
+                node.children[index] = self.getNode()
+            node = node.children[index]
         n = node.endOfWord[1] + 1
         node.endOfWord = (True, n)
 

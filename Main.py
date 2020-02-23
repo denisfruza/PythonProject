@@ -29,7 +29,7 @@ if __name__ == "__main__":
                 stranica.append("%s\\%s"%(dirpath,f))
                 izlazni_linkovi.append(parser1.links)
                 lista_izlaznih_linkova.append(izlazni_linkovi)
-               # print("Parsiram:  " + "%s\\%s"%(dirpath,f))
+                print("Parsiram:  " + "%s\\%s"%(dirpath,f))
                 for word in parser1.words:
                     root.dodavanjeReci(word, f)
 

@@ -6,7 +6,7 @@ class Set:
         self.dict={}
 
     def len(self):
-	return len(self.dict)
+        return len(self.dict)
 
     def sadrzi(self,vrednost):
        for i in self.dict:
@@ -54,5 +54,5 @@ class Set:
         return kopija
 
     def ispis(self):
-	for i in self.dict:
-	   print(i)
+        for i in self.dict:
+            print(i)
