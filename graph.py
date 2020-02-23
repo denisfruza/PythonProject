@@ -1,28 +1,33 @@
+from PythonProject.set import Set
+import copy
 
 class Graph():
 
     def __init__(self):
         self.graph = {}
-        self.vertices_no = 0
+
+    def sadrzi(self,v):
+        if v in self.graph:
+            return True
+        else:
+            return False
 
     def dodaj_cvor(self,v):
 
-        if v in self.graph:
-            print("Cvor ", v, " vec postoji.")
-        else:
-            self.vertices_no = self.vertices_no + 1
+        if v not in self.graph:
             self.graph[v] = []
-
-    def dodaj_granu(self,v1, v2, e):
-        '''
-        if v1 not in self.graph:
-            print("Vertex ", v1, " ne postoji.")
-        elif v2 not in self.graph:
-            print("Vertex ", v2, " ne postoji.")
+            print("Cvor dodat")
         else:
-        '''
-        temp = [v2, e]
-        self.graph[v1].append(temp)
+            print("Cvor vec postoji")
+
+    def dodaj_granu(self,v,e):
+
+        if not self.sadrzi(v):
+            print("Ne postoji cvor")
+        else:
+            self.graph[v] = e
+
+
 
 class Linkovi(Graph):
 
