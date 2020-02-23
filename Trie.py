@@ -49,6 +49,6 @@ class Trie:
             index = self.charToIndex(word[i])
 
             if index not in node.children:
-                return node.endOfWord, node.links, node
+                return None
             node = node.children[index]
         return node.endOfWord, node.links, node

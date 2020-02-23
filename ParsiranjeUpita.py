@@ -27,7 +27,7 @@ def ParsirajUpit(root):
             rezultat[i] = word.upper()
             i += 1
         else:
-            if not root.pretragaReci(word)[0][0]:
+            if not root.pretragaReci(word):
                 rezultat[i] = Set()
                 i += 1
             else:

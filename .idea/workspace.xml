@@ -3,7 +3,6 @@
   <component name="ChangeListManager">
     <list default="true" id="2a0c8823-7465-4975-bde0-5a49ac269ffc" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Main.py" beforeDir="false" afterPath="$PROJECT_DIR$/Main.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/ParsiranjeUpita.py" beforeDir="false" afterPath="$PROJECT_DIR$/ParsiranjeUpita.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Trie.py" beforeDir="false" afterPath="$PROJECT_DIR$/Trie.py" afterDir="false" />
     </list>
@@ -31,7 +30,7 @@
   </component>
   <component name="PropertiesComponent">
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/../Pretrazivac" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
   </component>
   <component name="RunManager">
     <configuration name="Main" type="PythonConfigurationType" factoryName="Python" nameIsGenerated="true">
@@ -74,26 +73,26 @@
       <screen x="0" y="0" width="1366" height="728" />
     </state>
     <state x="147" y="38" key="#com.intellij.execution.impl.EditConfigurationsDialog/0.0.1366.728/1366.-146.1680.1010@0.0.1366.728" timestamp="1582417709420" />
-    <state x="548" y="169" key="FileChooserDialogImpl" timestamp="1582417979874">
+    <state x="548" y="169" key="FileChooserDialogImpl" timestamp="1582476204126">
       <screen x="0" y="0" width="1366" height="728" />
     </state>
-    <state x="548" y="169" key="FileChooserDialogImpl/0.0.1366.728/1366.-146.1680.1010@0.0.1366.728" timestamp="1582417979874" />
-    <state width="1345" height="179" key="GridCell.Tab.0.bottom" timestamp="1582472299005">
+    <state x="548" y="169" key="FileChooserDialogImpl/0.0.1366.728/1366.-146.1680.1010@0.0.1366.728" timestamp="1582476204126" />
+    <state width="1345" height="212" key="GridCell.Tab.0.bottom" timestamp="1582476174061">
       <screen x="0" y="0" width="1366" height="728" />
     </state>
-    <state width="1345" height="179" key="GridCell.Tab.0.bottom/0.0.1366.728/1366.-146.1680.1010@0.0.1366.728" timestamp="1582472299005" />
-    <state width="1345" height="179" key="GridCell.Tab.0.center" timestamp="1582472299005">
+    <state width="1345" height="212" key="GridCell.Tab.0.bottom/0.0.1366.728/1366.-146.1680.1010@0.0.1366.728" timestamp="1582476174061" />
+    <state width="1345" height="212" key="GridCell.Tab.0.center" timestamp="1582476174061">
       <screen x="0" y="0" width="1366" height="728" />
     </state>
-    <state width="1345" height="179" key="GridCell.Tab.0.center/0.0.1366.728/1366.-146.1680.1010@0.0.1366.728" timestamp="1582472299005" />
-    <state width="1345" height="179" key="GridCell.Tab.0.left" timestamp="1582472299005">
+    <state width="1345" height="212" key="GridCell.Tab.0.center/0.0.1366.728/1366.-146.1680.1010@0.0.1366.728" timestamp="1582476174061" />
+    <state width="1345" height="212" key="GridCell.Tab.0.left" timestamp="1582476174061">
       <screen x="0" y="0" width="1366" height="728" />
     </state>
-    <state width="1345" height="179" key="GridCell.Tab.0.left/0.0.1366.728/1366.-146.1680.1010@0.0.1366.728" timestamp="1582472299005" />
-    <state width="1345" height="179" key="GridCell.Tab.0.right" timestamp="1582472299005">
+    <state width="1345" height="212" key="GridCell.Tab.0.left/0.0.1366.728/1366.-146.1680.1010@0.0.1366.728" timestamp="1582476174061" />
+    <state width="1345" height="212" key="GridCell.Tab.0.right" timestamp="1582476174061">
       <screen x="0" y="0" width="1366" height="728" />
     </state>
-    <state width="1345" height="179" key="GridCell.Tab.0.right/0.0.1366.728/1366.-146.1680.1010@0.0.1366.728" timestamp="1582472299005" />
+    <state width="1345" height="212" key="GridCell.Tab.0.right/0.0.1366.728/1366.-146.1680.1010@0.0.1366.728" timestamp="1582476174061" />
     <state x="369" y="261" key="com.intellij.ide.util.TipDialog" timestamp="1582138652309">
       <screen x="0" y="0" width="1366" height="728" />
     </state>
