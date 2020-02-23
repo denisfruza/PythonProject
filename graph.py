@@ -1,5 +1,3 @@
-from PythonProject.set import Set
-import copy
 
 class Graph():
 
@@ -16,7 +14,6 @@ class Graph():
 
         if v not in self.graph:
             self.graph[v] = []
-            print("Cvor dodat")
         else:
             print("Cvor vec postoji")
 

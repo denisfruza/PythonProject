@@ -1,6 +1,6 @@
 from Trie import *
 from parser2 import *
-from PythonProject.graph import *
+from graph import *
 from ParsiranjeUpita import ParsirajUpit
 import os
 import time
