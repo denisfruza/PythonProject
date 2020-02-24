@@ -70,5 +70,6 @@ if __name__ == "__main__":
     end = time.time()
     print("Vreme parsiranja: ")
     print(end-start)
-    s = ParsirajUpit(root)
+    [s,d]= ParsirajUpit(root)
     s.ispis()
+    print(d)

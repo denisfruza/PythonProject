@@ -35,17 +35,20 @@ def ParsirajUpit(root):
                 i += 1
     s = Set()
     i = 0
+    #ukoliko je u pitanju skupovna operacija, prvo cemo uci u else i radi se unija(ubacuje se rec u set)
+    #zatim  ce rez[1] biti logicki operator, i tada na osnovu logickog operatora radimo operaciju(presek,unija,komp) sa rez[2]
+    #ukoliko u upitu ne postoje logicki operatori, ulazice samo u else i samo ce raditi uniju dok ne prodje kroz sve delove upita
     while i<len(rezultat):
         if rezultat[i] == logickiOperatori[0]:
             s = s.presek(rezultat[i+1])
-            i = i+2
+            break
         elif rezultat[i] == logickiOperatori[1]:
             s = s.unija(rezultat[i+1])
-            i = i+2
-        elif rezultat[i] == logickiOperatori[1]:
+            break
+        elif rezultat[i] == logickiOperatori[2]:
             s = s.komplement(rezultat[i+1])
-            i = i+2
+            break
         else:
             s = s.unija(rezultat[i])
             i += 1
-        return s
+    return s, delovi

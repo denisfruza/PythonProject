@@ -5,7 +5,7 @@ class Set:
     def __init__(self):
         self.dict={}
 
-    def len(self):
+    def __len__(self):
         return len(self.dict)
 
     def sadrzi(self,vrednost):
@@ -27,26 +27,25 @@ class Set:
 
         kopija = copy.copy(self)
 
-        if not set2 is None:
+        if set2 is not None:
             for i in set2.dict:
                 kopija.dodaj(i)
 
         return kopija
 
     def presek(self,set2):
-
-        presek = {}
-
-        for i in self.dict:
-            if i in set2.dict:
-                    presek.dodaj(i)
-
-        return presek
+        if len(self) > len(set2):
+            self, set2 = set2, self
+        result = Set()
+        for x in self.dict:
+            if x in set2.dict:
+                result.dodaj(x)
+        return result
 
     def komplement(self,set2):
         kopija = copy.copy(self)
 
-        if not set2 is None:
+        if set2 is not None:
             for i in set2.dict:
                 if kopija.sadrzi(i):
                     kopija.obrisi(i)
