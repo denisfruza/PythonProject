@@ -2,6 +2,8 @@ from Trie import *
 from parser2 import *
 from graph import *
 from ParsiranjeUpita import ParsirajUpit
+from rangiranje import *
+from set import *
 import os
 import time
 
@@ -27,24 +29,13 @@ if __name__ == "__main__":
         for f in files:
             if("%s\\%s"%(dirpath,f)).endswith(".html"):
                 parser1.parse("%s\\%s"%(dirpath,f))
-                '''
-                stranica.append("%s\\%s"%(dirpath,f))
-                izlazni_linkovi.append(parser1.links)
-                lista_izlaznih_linkova.append(izlazni_linkovi)
-                '''
                 graph["%s\\%s"%(dirpath,f)] = Linkovi()
                 graph["%s\\%s"%(dirpath,f)].izlazni_linkovi = parser1.links
                 g.dodaj_cvor("%s\\%s"%(dirpath,f))
 
-                #print("Parsiram:  " + "%s\\%s"%(dirpath,f))
+                print("Parsiram:  " + "%s\\%s"%(dirpath,f))
                 for word in parser1.words:
                     root.dodavanjeReci(word, dirpath + '\\' +f)
-    '''
-    for i in range(0,len(stranica)):
-        graph[stranica[i]] = Linkovi()
-        graph[stranica[i]].izlazni_linkovi = lista_izlaznih_linkova[i]
-    '''
-
 
     for key1 in graph:
         for key2 in graph:
@@ -71,5 +62,61 @@ if __name__ == "__main__":
     print("Vreme parsiranja: ")
     print(end-start)
     [s,d]= ParsirajUpit(root)
-    s.ispis()
-    print(d)
+    lista_stranica = s.ispis()
+
+    # --- RANGIRANJE ---
+    ukupan_rang1 = []
+    for j in range(0,len(lista_stranica)):
+        rang_pomocna = 0
+        rang_pomocna2 = 0
+        pomocna_promenljiva = 0
+        for i in range(0, len(d)):
+            if d[i].upper() in ("AND","OR","NOT"):
+                continue
+            else:
+                pomocna_promenljiva = nadji_rang(lista_stranica[j], d[i])
+                rang_pomocna += nadji_rang(lista_stranica[j], d[i])
+                rang_pomocna2 += nadji_rang(lista_stranica[j], d[i])
+        if pomocna_promenljiva < rang_pomocna2:
+            rang_pomocna += 5
+        ukupan_rang1.append(rang_pomocna)
+    #2)
+
+    ukupan_rang2 = []
+    for i in range(0,len(lista_stranica)):
+        brojac = 0
+        for j in graph[lista_stranica[i]].ulazni_linkovi:
+            brojac = brojac + 1
+        ukupan_rang2.append(brojac*2)
+
+    #3)
+    dict = {}
+    for i in range(0, len(lista_stranica)):
+        nova_lista_stranica = []
+        for key in graph:
+            if lista_stranica[i] in graph[key].izlazni_linkovi:
+                nova_lista_stranica.append(key)
+        dict[lista_stranica[i]] = nova_lista_stranica
+
+    ukupan_rang3 = []
+    for i in dict:
+        rang_pomocna = 0
+        for j in dict[i]:
+            pomocna_promenljiva = 0
+            rang_pomocna2 = 0
+            for k in range(0,len(d)):
+                if d[k].upper() in ("AND", "OR", "NOT"):
+                    continue
+                else:
+                    pomocna_promenljiva = nadji_rang(j,d[k])
+                    rang_pomocna += nadji_rang(j,d[k])
+                    rang_pomocna2 += nadji_rang(j,d[k])
+            if pomocna_promenljiva < rang_pomocna2:
+                rang_pomocna += 5
+        ukupan_rang3.append(rang_pomocna)
+
+    for i in range(0, len(lista_stranica)):
+        print("Stranica: ", lista_stranica[i], " rang1: ", ukupan_rang1[i], " rang2: ", ukupan_rang2[i]," rang3: ", ukupan_rang3[i])
+    print("\n\n")
+    for i in range(0, len(lista_stranica)):
+        print("Stranica: ", lista_stranica[i], " ukupan_rang: ", ukupan_rang1[i] + ukupan_rang2[i] + ukupan_rang3[i])

@@ -4,6 +4,7 @@ class Set:
 
     def __init__(self):
         self.dict={}
+        self.lista = []
 
     def __len__(self):
         return len(self.dict)
@@ -55,3 +56,6 @@ class Set:
     def ispis(self):
         for i in self.dict:
             print(i)
+            self.lista.append(i)
+        return self.lista
+
