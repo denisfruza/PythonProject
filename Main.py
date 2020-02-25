@@ -7,6 +7,60 @@ from funkcionalnosti.paginacija import *
 import os
 import time
 
+def rang(lista_stranica,d):
+    ukupan_rang1 = []
+    for j in range(0, len(lista_stranica)):
+        rang_pomocna = 0
+        rang_pomocna2 = 0
+        pomocna_promenljiva = 0
+        for i in range(0, len(d)):
+            if d[i].upper() in ("AND", "OR", "NOT"):
+                continue
+            else:
+                pomocna_promenljiva = nadji_rang(lista_stranica[j], d[i])
+                rang_pomocna += nadji_rang(lista_stranica[j], d[i])
+                rang_pomocna2 += nadji_rang(lista_stranica[j], d[i])
+        if pomocna_promenljiva < rang_pomocna2 and pomocna_promenljiva != 0:
+            rang_pomocna += 5
+        ukupan_rang1.append(rang_pomocna * 2)
+
+    # 2)
+
+    ukupan_rang2 = []
+    for i in range(0, len(lista_stranica)):
+        brojac = 0
+        for j in graph[lista_stranica[i]].ulazni_linkovi:
+            brojac = brojac + 1
+        ukupan_rang2.append(brojac)
+
+    # 3)
+    dict = {}
+    for i in range(0, len(lista_stranica)):
+        nova_lista_stranica = []
+        for key in graph:
+            if lista_stranica[i] in graph[key].izlazni_linkovi:
+                nova_lista_stranica.append(key)
+        dict[lista_stranica[i]] = nova_lista_stranica
+
+    ukupan_rang3 = []
+    for i in dict:
+        rang_pomocna = 0
+        for j in dict[i]:
+            pomocna_promenljiva = 0
+            rang_pomocna2 = 0
+            for k in range(0, len(d)):
+                if d[k].upper() in ("AND", "OR", "NOT"):
+                    continue
+                else:
+                    pomocna_promenljiva = nadji_rang(j, d[k])
+                    rang_pomocna += nadji_rang(j, d[k])
+                    rang_pomocna2 += nadji_rang(j, d[k])
+            if pomocna_promenljiva < rang_pomocna2 and pomocna_promenljiva != 0:
+                rang_pomocna += 5
+        ukupan_rang3.append(rang_pomocna * 3)
+
+    return ukupan_rang1,ukupan_rang2,ukupan_rang3
+
 
 def dodaj_ulaznu_granu():
     for key1 in graph:
@@ -34,6 +88,8 @@ if __name__ == "__main__":
             while(not os.path.isdir(dir)):
                 print("Direktorijum koji ste uneli ne postoji!")
                 dir = input()
+            if not os.path.isabs(dir):
+                dir = os.path.abspath(dir)
 
             parser1 = Parser()
             root = Trie()
@@ -95,63 +151,15 @@ if __name__ == "__main__":
             print("Graf formiran")
             lista_stranica = s.ispis()
 
-            # --- RANGIRANJE ---
-            ukupan_rang1 = []
-            for j in range(0,len(lista_stranica)):
-                rang_pomocna = 0
-                rang_pomocna2 = 0
-                pomocna_promenljiva = 0
-                # noinspection PyUnboundLocalVariable
-                for i in range(0, len(d)):
-                    if d[i].upper() in ("AND","OR","NOT"):
-                        continue
-                    else:
-                        pomocna_promenljiva = nadji_rang(lista_stranica[j], d[i])
-                        rang_pomocna += nadji_rang(lista_stranica[j], d[i])
-                        rang_pomocna2 += nadji_rang(lista_stranica[j], d[i])
-                if pomocna_promenljiva < rang_pomocna2 and pomocna_promenljiva!=0:
-                    rang_pomocna += 5
-                ukupan_rang1.append(rang_pomocna*2)
-            #2)
-
-            ukupan_rang2 = []
-            for i in range(0,len(lista_stranica)):
-                brojac = 0
-                for j in graph[lista_stranica[i]].ulazni_linkovi:
-                    brojac = brojac + 1
-                ukupan_rang2.append(brojac)
-
-            #3)
-            dict = {}
-            for i in range(0, len(lista_stranica)):
-                nova_lista_stranica = []
-                for key in graph:
-                    if lista_stranica[i] in graph[key].izlazni_linkovi:
-                        nova_lista_stranica.append(key)
-                dict[lista_stranica[i]] = nova_lista_stranica
-
-            ukupan_rang3 = []
-            for i in dict:
-                rang_pomocna = 0
-                for j in dict[i]:
-                    pomocna_promenljiva = 0
-                    rang_pomocna2 = 0
-                    for k in range(0,len(d)):
-                        if d[k].upper() in ("AND", "OR", "NOT"):
-                            continue
-                        else:
-                            pomocna_promenljiva = nadji_rang(j,d[k])
-                            rang_pomocna += nadji_rang(j,d[k])
-                            rang_pomocna2 += nadji_rang(j,d[k])
-                    if pomocna_promenljiva < rang_pomocna2 and pomocna_promenljiva!=0:
-                        rang_pomocna += 5
-                ukupan_rang3.append(rang_pomocna*3)
+            rang_ret = rang(lista_stranica, d)
+            ukupan_rang1 = rang_ret[0]
+            ukupan_rang2 = rang_ret[1]
+            ukupan_rang3 = rang_ret[2]
 
             for i in range(0, len(lista_stranica)):
-                print("Stranica: ", lista_stranica[i], " rang1: ", ukupan_rang1[i], " rang2: ", ukupan_rang2[i]," rang3: ", ukupan_rang3[i])
+                print("Stranica: ", lista_stranica[i], " rang1: ", ukupan_rang1[i], " rang2: ", ukupan_rang2[i]," rang3: ", ukupan_rang3[i],"ukupan rang: ", ukupan_rang1[i] + ukupan_rang2[i] + ukupan_rang3[i])
             print("\n\n")
-            for i in range(0, len(lista_stranica)):
-                print("Stranica: ", lista_stranica[i], " ukupan_rang: ", ukupan_rang1[i] + ukupan_rang2[i] + ukupan_rang3[i])
+
             ukupan_rang = []
             for i in range(0, len(lista_stranica)):
                 ukupan_rang.append(ukupan_rang1[i]+ukupan_rang2[i]+ukupan_rang3[i])
@@ -159,7 +167,7 @@ if __name__ == "__main__":
             for i in range(0, len(lista_stranica)):
                 rang[ukupan_rang[i]]=lista_stranica[i]
 
-            bubble_sort(ukupan_rang)
+            merge_sort(ukupan_rang)
             print("Sortiranje zavrseno")
 
 
