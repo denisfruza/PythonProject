@@ -1,6 +1,7 @@
-from set import *
 from Trie import *
 
+
+# noinspection PyTypeChecker
 def ParsirajUpit(root):
     print("Unesite upit: ")
     upit = input()
@@ -35,10 +36,10 @@ def ParsirajUpit(root):
                 i += 1
     s = Set()
     i = 0
-    #ukoliko je u pitanju skupovna operacija, prvo cemo uci u else i radi se unija(ubacuje se rec u set)
-    #zatim  ce rez[1] biti logicki operator, i tada na osnovu logickog operatora radimo operaciju(presek,unija,komp) sa rez[2]
-    #ukoliko u upitu ne postoje logicki operatori, ulazice samo u else i samo ce raditi uniju dok ne prodje kroz sve delove upita
-    while i<len(rezultat):
+    """ukoliko se radi o obicnom upitu (bez logickih operatora) ulazi se samo u else i unijom se dodaju rezultati 
+    pretrage u S, a ukoliko se radi o upitu sa logickim operatorom, nakon sto naidjemo na logicki operator, 
+    rade se operacije(presek, unija, komplement) i u S ubacuju rezultati pretrage za upit sa logickim operatorom """
+    while i < len(rezultat):
         if rezultat[i] == logickiOperatori[0]:
             s = s.presek(rezultat[i+1])
             break

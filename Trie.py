@@ -1,5 +1,6 @@
 from collections import defaultdict
-from  set import Set
+from set import Set
+
 
 class TrieNode:
 
@@ -8,20 +9,23 @@ class TrieNode:
         self.endOfWord = (False, 0)
         self.links = {}  # recnik
 
-    def intoSet(self):
+    def intoSet(self):  # ubacivanje u set
         s = Set()
         for item in self.links:
             s.dodaj(item)
         return s
+
 
 class Trie:
 
     def __init__(self):
         self.root = self.getNode()
 
+    # noinspection PyMethodMayBeStatic
     def getNode(self):
         return TrieNode()
 
+    # noinspection PyMethodMayBeStatic
     def charToIndex(self, char):
         return ord(char) - ord('a')  # ord() funkcija vraca unicode vrednost datog karaktera - integer (ASCII tabela)
 
