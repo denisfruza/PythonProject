@@ -100,7 +100,7 @@ if __name__ == "__main__":
                         pomocna_promenljiva = nadji_rang(lista_stranica[j], d[i])
                         rang_pomocna += nadji_rang(lista_stranica[j], d[i])
                         rang_pomocna2 += nadji_rang(lista_stranica[j], d[i])
-                if pomocna_promenljiva < rang_pomocna2:
+                if pomocna_promenljiva < rang_pomocna2 and pomocna_promenljiva!=0:
                     rang_pomocna += 5
                 ukupan_rang1.append(rang_pomocna)
             #2)
@@ -134,7 +134,7 @@ if __name__ == "__main__":
                             pomocna_promenljiva = nadji_rang(j,d[k])
                             rang_pomocna += nadji_rang(j,d[k])
                             rang_pomocna2 += nadji_rang(j,d[k])
-                    if pomocna_promenljiva < rang_pomocna2:
+                    if pomocna_promenljiva < rang_pomocna2 and pomocna_promenljiva!=0:
                         rang_pomocna += 5
                 ukupan_rang3.append(rang_pomocna)
 
