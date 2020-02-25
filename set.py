@@ -58,4 +58,7 @@ class Set:
             print(i)
             self.lista.append(i)
         return self.lista
+    def ispis2(self):
+        for i in self.dict:
+            print(i)
 
