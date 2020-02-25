@@ -7,6 +7,7 @@ from paginacija import *
 import os
 import time
 
+
 def dodaj_ulaznu_granu():
     for key1 in graph:
         for key2 in graph:
@@ -23,7 +24,8 @@ if __name__ == "__main__":
         print("")
         print("1. Unos direktorijuma i parsiranje fajlova")
         print("2. Unos i parsiranje upita")
-        print("3. CAKA")
+        print("3. Ispis ulaznih/izlaznih linkova i rangiranje")
+        print("4. Paginacija")
         print("0. Izlaz")
         userInput = input("Izaberite opciju: ")
         if userInput == "1":
@@ -42,19 +44,19 @@ if __name__ == "__main__":
             for dirpath, dirnames, files in os.walk(str(dir)):
                 print(f"Pronadjen direktorijum: {dirpath}")
                 for f in files:
-                    if("%s\\%s"%(dirpath,f)).endswith(".html"):
-                        parser1.parse("%s\\%s"%(dirpath,f))
+                    if("%s\\%s"%(dirpath, f)).endswith(".html"):
+                        parser1.parse("%s\\%s"%(dirpath, f))
                         graph["%s\\%s"%(dirpath,f)] = Linkovi()
                         graph["%s\\%s"%(dirpath,f)].izlazni_linkovi = parser1.links
-                        g.dodaj_cvor("%s\\%s"%(dirpath,f))
+                        g.dodaj_cvor("%s\\%s"%(dirpath, f))
 
-                        print("Parsiram:  " + "%s\\%s"%(dirpath,f))
+                        print("Parsiram:  " + "%s\\%s"%(dirpath, f))
                         for word in parser1.words:
-                            root.dodavanjeReci(word, dirpath + '\\' +f)
+                            root.dodavanjeReci(word, dirpath + '\\' + f)
             end = time.time()
             print("Vreme parsiranja: ")
             print(end - start)
-            for key in  graph:
+            for key in graph:
                 g.dodaj_izlaznu_granu(key, graph[key].izlazni_linkovi)
 
             dodaj_ulaznu_granu()
@@ -65,16 +67,18 @@ if __name__ == "__main__":
             print(g.graph)
             print("*************************************************")
 
-
         if userInput == "2":
+            # noinspection PyUnboundLocalVariable
             [s, d] = ParsirajUpit(root)
             s.ispis2()
         if userInput == "3":
             try:
+                # noinspection PyUnboundLocalVariable
                 s
             except NameError:
                 print("Morate prvo uneti upit!")
                 break
+            # noinspection PyUnboundLocalVariable
             for key in graph:
                 print("Kljuc: ")
                 print(key)
@@ -83,6 +87,7 @@ if __name__ == "__main__":
                 print("Izlazni linkovi: ")
                 print(graph[key].izlazni_linkovi)
 
+            # noinspection PyUnboundLocalVariable
             print(g.graph)
             print("Graf formiran")
             lista_stranica = s.ispis()
@@ -93,6 +98,7 @@ if __name__ == "__main__":
                 rang_pomocna = 0
                 rang_pomocna2 = 0
                 pomocna_promenljiva = 0
+                # noinspection PyUnboundLocalVariable
                 for i in range(0, len(d)):
                     if d[i].upper() in ("AND","OR","NOT"):
                         continue
@@ -157,7 +163,8 @@ if __name__ == "__main__":
             print("Sortiran ispis: ")
             for i in range(0, len(lista_stranica)):
                  print(rang[ukupan_rang[i]],"   ",ukupan_rang[i])
+        if userInput == "4":
+            # noinspection PyUnboundLocalVariable
+            paginacija(lista_stranica)
         if userInput =="0":
             break
-
-    #paginacija(lista_stranica)

@@ -85,8 +85,6 @@ def paginacija(lista_stranica):
                 print("--Opcija uneta--")
                 print("Trenutni prikaz sranica:")
                 ispisi_stranice(lista_stranica, prva_stranica, poslednja_stranica)
-                print(prva_stranica)
-                print(poslednja_stranica)
                 opcija = input("Unesi opciju: ")
 
 def ispisi_stranice(lista,prva,poslednja):
