@@ -3,8 +3,17 @@ from graph import *
 from ParsiranjeUpita import ParsirajUpit
 from rangiranje import *
 from sortiranje import *
+from paginacija import *
 import os
 import time
+
+def dodaj_ulaznu_granu():
+    for key1 in graph:
+        for key2 in graph:
+            for key2_izlazni in graph[key2].izlazni_linkovi:
+                if key1 == key2_izlazni:
+                    if key2 not in graph[key1].ulazni_linkovi:
+                        graph[key1].ulazni_linkovi.append(key2)
 
 
 if __name__ == "__main__":
@@ -45,15 +54,18 @@ if __name__ == "__main__":
             end = time.time()
             print("Vreme parsiranja: ")
             print(end - start)
-
-            for key1 in graph:
-                for key2 in graph:
-                    for key2_izlazni in graph[key2].izlazni_linkovi:
-                        if key1 == key2_izlazni:
-                            if key2 not in graph[key1].ulazni_linkovi:
-                                graph[key1].ulazni_linkovi.append(key2)
             for key in  graph:
-                g.dodaj_granu(key, graph[key].izlazni_linkovi)
+                g.dodaj_izlaznu_granu(key, graph[key].izlazni_linkovi)
+
+            dodaj_ulaznu_granu()
+
+            for key in graph:
+                g.dodavanje_ulazne_grane(key,graph[key].ulazni_linkovi)
+            print("********************** GRAF *********************")
+            print(g.graph)
+            print("*************************************************")
+
+
         if userInput == "2":
             [s, d] = ParsirajUpit(root)
             s.ispis2()
@@ -147,3 +159,5 @@ if __name__ == "__main__":
                  print(rang[ukupan_rang[i]],"   ",ukupan_rang[i])
         if userInput =="0":
             break
+
+    #paginacija(lista_stranica)

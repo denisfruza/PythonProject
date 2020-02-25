@@ -17,12 +17,16 @@ class Graph():
         else:
             print("Cvor vec postoji")
 
-    def dodaj_granu(self,v,e):
+    def dodaj_izlaznu_granu(self,v,e):
 
         if not self.sadrzi(v):
             print("Ne postoji cvor")
         else:
             self.graph[v] = e
+
+    def dodavanje_ulazne_grane(self,v,e):
+        self.graph[v] = e
+
 
 
 
