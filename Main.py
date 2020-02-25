@@ -4,6 +4,7 @@ from graph import *
 from ParsiranjeUpita import ParsirajUpit
 from rangiranje import *
 from set import *
+from sortiranje import *
 import os
 import time
 
@@ -120,3 +121,17 @@ if __name__ == "__main__":
     print("\n\n")
     for i in range(0, len(lista_stranica)):
         print("Stranica: ", lista_stranica[i], " ukupan_rang: ", ukupan_rang1[i] + ukupan_rang2[i] + ukupan_rang3[i])
+    ukupan_rang = []
+    for i in range(0, len(lista_stranica)):
+        ukupan_rang.append(ukupan_rang1[i]+ukupan_rang2[i]+ukupan_rang3[i])
+    rang = {}
+    for i in range(0, len(lista_stranica)):
+        rang[ukupan_rang[i]]=lista_stranica[i]
+
+    bubble_sort(ukupan_rang)
+    print("Sortiranje zavrseno")
+    print(ukupan_rang)
+
+    print("Sortiran ispis: ")
+    for i in range(0, len(lista_stranica)):
+        print(rang[ukupan_rang[i]],"   ",ukupan_rang[i])
