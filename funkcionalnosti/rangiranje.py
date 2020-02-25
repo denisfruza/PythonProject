@@ -5,7 +5,7 @@ def nadji_rang(stranica,rec):
     p = Parser()
     parser = p.parse(stranica)
     for w in parser[1]:
-        if w == rec:
+        if w.upper() == rec.upper():
             brojac = brojac + 1
-    rang = brojac*2
+    rang = brojac
     return rang

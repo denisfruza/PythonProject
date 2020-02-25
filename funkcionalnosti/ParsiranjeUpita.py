@@ -1,4 +1,4 @@
-from Trie import *
+from strukture.Trie import *
 
 
 # noinspection PyTypeChecker

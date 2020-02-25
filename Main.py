@@ -1,9 +1,9 @@
-from Trie import *
-from graph import *
-from ParsiranjeUpita import ParsirajUpit
-from rangiranje import *
-from sortiranje import *
-from paginacija import *
+from strukture.Trie import *
+from strukture.graph import *
+from funkcionalnosti.ParsiranjeUpita import ParsirajUpit
+from funkcionalnosti.rangiranje import *
+from funkcionalnosti.sortiranje import *
+from funkcionalnosti.paginacija import *
 import os
 import time
 
@@ -41,6 +41,7 @@ if __name__ == "__main__":
             graph = {}
 
             start = time.time()
+            b = 0
             for dirpath, dirnames, files in os.walk(str(dir)):
                 print(f"Pronadjen direktorijum: {dirpath}")
                 for f in files:
@@ -51,11 +52,13 @@ if __name__ == "__main__":
                         g.dodaj_cvor("%s\\%s"%(dirpath, f))
 
                         print("Parsiram:  " + "%s\\%s"%(dirpath, f))
+                        b = b + 1
                         for word in parser1.words:
                             root.dodavanjeReci(word, dirpath + '\\' + f)
             end = time.time()
             print("Vreme parsiranja: ")
             print(end - start)
+            print("Broj rezuultata: ",b)
             for key in graph:
                 g.dodaj_izlaznu_granu(key, graph[key].izlazni_linkovi)
 
@@ -108,7 +111,7 @@ if __name__ == "__main__":
                         rang_pomocna2 += nadji_rang(lista_stranica[j], d[i])
                 if pomocna_promenljiva < rang_pomocna2 and pomocna_promenljiva!=0:
                     rang_pomocna += 5
-                ukupan_rang1.append(rang_pomocna)
+                ukupan_rang1.append(rang_pomocna*2)
             #2)
 
             ukupan_rang2 = []
@@ -116,7 +119,7 @@ if __name__ == "__main__":
                 brojac = 0
                 for j in graph[lista_stranica[i]].ulazni_linkovi:
                     brojac = brojac + 1
-                ukupan_rang2.append(brojac*2)
+                ukupan_rang2.append(brojac)
 
             #3)
             dict = {}
@@ -142,7 +145,7 @@ if __name__ == "__main__":
                             rang_pomocna2 += nadji_rang(j,d[k])
                     if pomocna_promenljiva < rang_pomocna2 and pomocna_promenljiva!=0:
                         rang_pomocna += 5
-                ukupan_rang3.append(rang_pomocna)
+                ukupan_rang3.append(rang_pomocna*3)
 
             for i in range(0, len(lista_stranica)):
                 print("Stranica: ", lista_stranica[i], " rang1: ", ukupan_rang1[i], " rang2: ", ukupan_rang2[i]," rang3: ", ukupan_rang3[i])
@@ -158,7 +161,7 @@ if __name__ == "__main__":
 
             bubble_sort(ukupan_rang)
             print("Sortiranje zavrseno")
-            print(ukupan_rang)
+
 
             print("Sortiran ispis: ")
             for i in range(0, len(lista_stranica)):
